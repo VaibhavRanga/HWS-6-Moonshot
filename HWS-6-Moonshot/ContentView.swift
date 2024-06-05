@@ -18,8 +18,10 @@ struct ContentView: View {
                 Group {
                     if isGridViewSelected {
                         MissionsGridView(missions: missions, astronauts: astronauts)
+                            .transition(.scale)
                     } else {
                         MissionsListView(missions: missions, astronauts: astronauts)
+                            .transition(.scale)
                     }
                 }
             }
@@ -29,11 +31,15 @@ struct ContentView: View {
             .toolbar {
                 if isGridViewSelected {
                     Button("Show as List") {
-                        isGridViewSelected = false
+                        withAnimation {
+                            isGridViewSelected = false
+                        }
                     }
                 } else {
                     Button("Show as Grid") {
-                        isGridViewSelected = true
+                        withAnimation {
+                            isGridViewSelected = true
+                        }
                     }
                 }
             }
